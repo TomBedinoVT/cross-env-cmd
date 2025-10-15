@@ -1,0 +1,64 @@
+{
+  "name": "cross-env-cmd",
+  "version": "1.0.0",
+  "description": "A merge of cross-env and env-cmd - Load environment variables from files and execute commands",
+  "main": "dist/index.js",
+  "bin": {
+    "cross-env-cmd": "./dist/bin/cross-env-cmd.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/bin/cross-env-cmd.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:e2e": "jest --testPathPattern=e2e",
+    "test:manual": "node scripts/test-manual.js",
+    "test:all": "npm run build && npm test && npm run test:manual",
+    "start": "node dist/index.js",
+    "docs": "node scripts/generate-docs.js",
+    "docs:serve": "npm run docs && npx http-server docs/api -p 8080 -o",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "cross-env",
+    "env-cmd",
+    "environment",
+    "variables",
+    "cli",
+    "dotenv",
+    "typescript"
+  ],
+  "author": "ValoriaTechnologia",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "dotenv-expand": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.0",
+    "audit-ci": "^6.6.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.25.0",
+    "typescript": "^5.2.2",
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts",
+      "**/?(*.)+(spec|test).ts"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ]
+  }
+}

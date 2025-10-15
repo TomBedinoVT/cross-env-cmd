@@ -1,0 +1,65 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs/api",
+  "name": "cross-env-cmd",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "readme": "README.md",
+  "theme": "default",
+  "sort": ["source-order"],
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  },
+  "categorizeByGroup": true,
+  "defaultCategory": "Other",
+  "categoryOrder": [
+    "Configuration",
+    "Environment Loading", 
+    "Command Execution",
+    "CLI",
+    "Types",
+    "*"
+  ],
+  "kindSortOrder": [
+    "Project",
+    "Module",
+    "Namespace",
+    "Enum",
+    "Class",
+    "Interface",
+    "Constructor",
+    "Property",
+    "Variable",
+    "Function",
+    "Accessor",
+    "Method"
+  ],
+  "visibilityFilters": {
+    "protected": false,
+    "private": false,
+    "inherited": true,
+    "external": false
+  },
+  "searchInComments": true,
+  "cleanOutputDir": true,
+  "plugin": [],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/__tests__/**",
+    "**/node_modules/**"
+  ],
+  "gitRevision": "main",
+  "gitRemote": "origin",
+  "sourceLinkTemplate": "https://github.com/ValoriaTechnologia/cross-env-cmd/blob/{gitRevision}/{path}#L{line}",
+  "hideGenerator": false,
+  "treatWarningsAsErrors": false,
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": false
+  }
+}

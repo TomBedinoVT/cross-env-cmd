@@ -1,0 +1,40 @@
+# Source files
+src/
+*.ts
+tsconfig.json
+
+# Test files
+__tests__/
+*.test.ts
+*.spec.ts
+test/
+coverage/
+
+# Development files
+.github/
+docs/
+scripts/
+*.md
+!README.md
+
+# Environment files
+.env*
+!.cross-env-cmdrc
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/

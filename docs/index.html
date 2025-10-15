@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cross-env-cmd - Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .section h4 {
+            color: #555;
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .code-inline {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 3px;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin: 0.2rem;
+        }
+
+        .badge.success {
+            background: #28a745;
+        }
+
+        .badge.info {
+            background: #17a2b8;
+        }
+
+        .badge.warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .example {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .example h4 {
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .toc h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 0.5rem 0;
+        }
+
+        .toc a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>cross-env-cmd</h1>
+            <p>Un outil qui combine les fonctionnalités de cross-env et env-cmd</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#utilisation">Utilisation</a></li>
+                <li><a href="#configuration">Configuration</a></li>
+                <li><a href="#exemples">Exemples</a></li>
+                <li><a href="#tests">Tests</a></li>
+                <li><a href="#developpement">Développement</a></li>
+                <li><a href="#api">API</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section id="introduction" class="section">
+                <h2>Introduction</h2>
+                <p><strong>cross-env-cmd</strong> est un outil en ligne de commande qui combine les fonctionnalités de <code class="code-inline">cross-env</code> et <code class="code-inline">env-cmd</code> pour charger des variables d'environnement depuis des fichiers et exécuter des commandes.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🚀 TypeScript</h4>
+                        <p>Écrit en TypeScript avec typage strict pour une meilleure fiabilité</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📁 Fichiers .env</h4>
+                        <p>Chargement de variables d'environnement depuis des fichiers .env</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚙️ Configuration RC</h4>
+                        <p>Configuration d'environnements multiples via un fichier .rc (format env-cmd)</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔧 Variables inline</h4>
+                        <p>Variables d'environnement en ligne de commande</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔄 Fusion intelligente</h4>
+                        <p>Fusion des variables avec ordre de priorité clair</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🌍 Multi-plateforme</h4>
+                        <p>Compatible avec Windows, macOS et Linux</p>
+                    </div>
+                </div>
+
+                <div class="toc">
+                    <h3>Table des matières</h3>
+                    <ul>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#utilisation">Utilisation</a></li>
+                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#exemples">Exemples</a></li>
+                        <li><a href="#tests">Tests</a></li>
+                        <li><a href="#developpement">Développement</a></li>
+                        <li><a href="#api">API</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="installation" class="section">
+                <h2>Installation</h2>
+                
+                <h3>Installation globale</h3>
+                <div class="code-block">
+npm install -g cross-env-cmd
+                </div>
+
+                <h3>Installation locale</h3>
+                <div class="code-block">
+npm install cross-env-cmd
+                </div>
+
+                <h3>Vérification de l'installation</h3>
+                <div class="code-block">
+cross-env-cmd --version
+# Affiche: 1.0.0
+                </div>
+
+                <div class="warning">
+                    <h4>⚠️ Prérequis</h4>
+                    <p>Node.js version 14.0.0 ou supérieure est requis.</p>
+                </div>
+            </section>
+
+            <section id="utilisation" class="section">
+                <h2>Utilisation</h2>
+                
+                <h3>Syntaxe de base</h3>
+                <div class="code-block">
+cross-env-cmd [options] [env-vars] &lt;command&gt;
+                </div>
+
+                <h3>Options disponibles</h3>
+                <div class="code-block">
+-e, --env &lt;environment&gt;    Environment name from .cross-env-cmdrc file
+-f, --file &lt;file&gt;          Environment file to load (can be used multiple times)
+--rc &lt;file&gt;                RC configuration file (default: .cross-env-cmdrc)
+-h, --help                 Show help
+-v, --version              Show version
+                </div>
+
+                <h3>Ordre de priorité des variables</h3>
+                <ol>
+                    <li><strong>Variables en ligne de commande</strong> (priorité la plus haute)</li>
+                    <li><strong>Fichiers .env spécifiés via <code class="code-inline">-f</code></strong></li>
+                    <li><strong>Variables définies dans le fichier RC</strong></li>
+                    <li><strong>Fichiers .env définis dans le fichier RC</strong></li>
+                    <li><strong>Variables d'environnement système existantes</strong></li>
+                </ol>
+            </section>
+
+            <section id="configuration" class="section">
+                <h2>Configuration</h2>
+                
+                <p>Créez un fichier <code class="code-inline">.cross-env-cmdrc</code> dans votre projet. Le format est identique à <code class="code-inline">env-cmd</code> :</p>
+
+                <h3>Format JSON</h3>
+                <div class="code-block">
+{
+  "development": {
+    "NODE_ENV": "development",
+    "LOG_LEVEL": "debug",
+    "DATABASE_NAME": "myapp_development",
+    "API_URL": "http://localhost:3000"
+  },
+  "staging": {
+    "NODE_ENV": "staging",
+    "LOG_LEVEL": "info",
+    "DATABASE_NAME": "myapp_staging",
+    "API_URL": "https://api-staging.example.com"
+  },
+  "production": {
+    "NODE_ENV": "production",
+    "LOG_LEVEL": "error",
+    "DATABASE_NAME": "myapp_production",
+    "API_URL": "https://api.example.com",
+    "SECRET_KEY": "prod_secret_key_here"
+  }
+}
+                </div>
+
+                <h3>Format JavaScript</h3>
+                <div class="code-block">
+module.exports = {
+  development: {
+    NODE_ENV: 'development',
+    LOG_LEVEL: 'debug',
+    DATABASE_NAME: 'myapp_development',
+    API_URL: 'http://localhost:3000'
+  },
+  staging: {
+    NODE_ENV: 'staging',
+    LOG_LEVEL: 'info',
+    DATABASE_NAME: 'myapp_staging',
+    API_URL: 'https://api-staging.example.com'
+  },
+  production: {
+    NODE_ENV: 'production',
+    LOG_LEVEL: 'error',
+    DATABASE_NAME: 'myapp_production',
+    API_URL: 'https://api.example.com',
+    SECRET_KEY: 'prod_secret_key_here'
+  }
+};
+                </div>
+            </section>
+
+            <section id="exemples" class="section">
+                <h2>Exemples</h2>
+                
+                <h3>1. Utilisation avec un environnement défini</h3>
+                <div class="example">
+                    <h4>Commande</h4>
+                    <div class="code-block">
+cross-env-cmd -e staging npm start
+                    </div>
+                    <p>Charge les variables de l'environnement "staging" depuis le fichier RC et exécute <code class="code-inline">npm start</code>.</p>
+                </div>
+
+                <h3>2. Chargement de fichiers .env supplémentaires</h3>
+                <div class="example">
+                    <h4>Commande</h4>
+                    <div class="code-block">
+cross-env-cmd -e staging -f .env.local npm run build
+                    </div>
+                    <p>Charge l'environnement "staging" plus le fichier <code class="code-inline">.env.local</code> et exécute <code class="code-inline">npm run build</code>.</p>
+                </div>
+
+                <h3>3. Variables d'environnement en ligne de commande</h3>
+                <div class="example">
+                    <h4>Commande</h4>
+                    <div class="code-block">
+cross-env-cmd -e staging TEST=value DEBUG=true npm test
+                    </div>
+                    <p>Charge l'environnement "staging" et ajoute les variables <code class="code-inline">TEST</code> et <code class="code-inline">DEBUG</code>.</p>
+                </div>
+
+                <h3>4. Exemple complet (comme demandé)</h3>
+                <div class="example">
+                    <h4>Commande</h4>
+                    <div class="code-block">
+cross-env-cmd -e staging -f .test.env -f .prod.env TEST=a BETA=e npm run deploy
+                    </div>
+                    <p>Exemple complet avec environnement RC, fichiers .env multiples et variables inline.</p>
+                </div>
+
+                <h3>5. Sans fichier RC, juste des fichiers .env</h3>
+                <div class="example">
+                    <h4>Commande</h4>
+                    <div class="code-block">
+cross-env-cmd -f .env.development -f .env.local NODE_ENV=development npm start
+                    </div>
+                    <p>Utilisation sans fichier RC, seulement avec des fichiers .env et des variables inline.</p>
+                </div>
+
+                <h3>6. Fichier RC personnalisé</h3>
+                <div class="example">
+                    <h4>Commande</h4>
+                    <div class="code-block">
+cross-env-cmd --rc .my-config.json -e production npm start
+                    </div>
+                    <p>Utilisation d'un fichier RC personnalisé au lieu du fichier par défaut.</p>
+                </div>
+            </section>
+
+            <section id="tests" class="section">
+                <h2>Tests</h2>
+                
+                <h3>Scripts de test disponibles</h3>
+                <div class="code-block">
+# Tests unitaires et end-to-end
+npm test
+
+# Tests en mode watch
+npm run test:watch
+
+# Tests avec couverture
+npm run test:coverage
+
+# Tests end-to-end uniquement
+npm run test:e2e
+
+# Tests manuels
+npm run test:manual
+
+# Tous les tests (build + tests + manuels)
+npm run test:all
+                </div>
+
+                <h3>Résultats des tests</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>✅ Tests unitaires</h4>
+                        <p>21 tests couvrant toutes les fonctions</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>✅ Tests d'intégration</h4>
+                        <p>Tests avec fichiers réels</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>✅ Tests end-to-end</h4>
+                        <p>12 tests complets du CLI</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>✅ Tests manuels</h4>
+                        <p>5 tests de fonctionnalité CLI</p>
+                    </div>
+                </div>
+
+                <h3>CI/CD</h3>
+                <p>Le projet utilise GitHub Actions pour l'intégration continue :</p>
+                <ul>
+                    <li><span class="badge success">CI</span> Tests automatiques sur Node.js 18.x, 20.x, 21.x</li>
+                    <li><span class="badge info">Code Quality</span> Vérifications TypeScript, audit de sécurité</li>
+                    <li><span class="badge warning">Cross-Platform</span> Tests sur Ubuntu, Windows, macOS</li>
+                    <li><span class="badge success">Performance</span> Tests de performance et de charge</li>
+                    <li><span class="badge info">Release</span> Publication automatique sur npm</li>
+                </ul>
+            </section>
+
+            <section id="developpement" class="section">
+                <h2>Développement</h2>
+                
+                <h3>Structure du projet</h3>
+                <div class="code-block">
+src/
+├── bin/
+│   └── cross-env-cmd.ts      # CLI principal
+├── lib/
+│   └── index.ts              # Bibliothèque principale
+├── types/
+│   └── index.ts              # Définitions TypeScript
+├── __tests__/
+│   ├── lib/                  # Tests unitaires
+│   ├── bin/                  # Tests CLI
+│   └── e2e/                  # Tests end-to-end
+└── index.ts                  # Point d'entrée
+                </div>
+
+                <h3>Scripts de développement</h3>
+                <div class="code-block">
+# Installer les dépendances
+npm install
+
+# Compiler TypeScript
+npm run build
+
+# Développement avec ts-node
+npm run dev -e staging -f test.env TEST=value npm start
+
+# Tests unitaires
+npm test
+
+# Tests end-to-end
+npm run test:e2e
+                </div>
+
+                <h3>Contribution</h3>
+                <ol>
+                    <li>Fork le projet</li>
+                    <li>Créer une branche feature (<code class="code-inline">git checkout -b feature/AmazingFeature</code>)</li>
+                    <li>Commit vos changements (<code class="code-inline">git commit -m 'Add some AmazingFeature'</code>)</li>
+                    <li>Push vers la branche (<code class="code-inline">git push origin feature/AmazingFeature</code>)</li>
+                    <li>Ouvrir une Pull Request</li>
+                </ol>
+            </section>
+
+            <section id="api" class="section">
+                <h2>API</h2>
+                
+                <h3>Fonctions principales</h3>
+                
+                <h4>loadEnvironment(options)</h4>
+                <p>Charge les variables d'environnement depuis diverses sources.</p>
+                <div class="code-block">
+interface LoadEnvironmentOptions {
+  environment?: string;           // Nom de l'environnement depuis le fichier RC
+  files?: string[];              // Fichiers .env à charger
+  rcFile?: string;               // Fichier de configuration RC
+  inlineVars?: Record&lt;string, string&gt;; // Variables inline
+}
+                </div>
+
+                <h4>loadRCConfig(rcFile)</h4>
+                <p>Charge le fichier de configuration RC.</p>
+                <div class="code-block">
+async function loadRCConfig(rcFile: string): Promise&lt;RCConfig | null&gt;
+                </div>
+
+                <h4>loadEnvFile(filePath)</h4>
+                <p>Charge les variables d'environnement depuis un fichier .env.</p>
+                <div class="code-block">
+async function loadEnvFile(filePath: string): Promise&lt;EnvironmentVariables&gt;
+                </div>
+
+                <h4>executeCommand(command, env)</h4>
+                <p>Exécute une commande avec les variables d'environnement.</p>
+                <div class="code-block">
+async function executeCommand(command: string[], env: EnvironmentVariables): Promise&lt;void&gt;
+                </div>
+
+                <h3>Types TypeScript</h3>
+                <div class="code-block">
+interface RCConfig {
+  [environment: string]: {
+    [key: string]: string;
+  };
+}
+
+interface EnvironmentVariables {
+  [key: string]: string;
+}
+
+interface ParsedArgs {
+  environment: string | null;
+  files: string[];
+  rcFile: string;
+  envVars: Record&lt;string, string&gt;;
+  command: string[];
+}
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Liens utiles</h4>
+                    <p><a href="https://github.com/ValoriaTechnologia/cross-env-cmd">GitHub</a></p>
+                    <p><a href="https://www.npmjs.com/package/cross-env-cmd">npm</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Documentation</h4>
+                    <p><a href="docs/CI-CD.md">CI/CD</a></p>
+                    <p><a href="README.md">README</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p><a href="https://github.com/ValoriaTechnologia/cross-env-cmd/issues">Issues</a></p>
+                    <p><a href="https://github.com/ValoriaTechnologia/cross-env-cmd/discussions">Discussions</a></p>
+                </div>
+            </div>
+            <p>&copy; 2024 ValoriaTechnologia. Tous droits réservés. Licence MIT.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling pour la navigation
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight de la section active
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Ajout du style pour l'élément actif
+        const style = document.createElement('style');
+        style.textContent = `
+            nav a.active {
+                color: #667eea !important;
+                border-bottom: 2px solid #667eea;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+
