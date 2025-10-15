@@ -38,8 +38,8 @@ function execCommand(command, description) {
 }
 
 function createDocsIndex() {
-  const docsApiPath = path.join(__dirname, '..', 'docs', 'api');
-  const indexPath = path.join(docsApiPath, 'index.html');
+  const docsPath = path.join(__dirname, '..', 'docs');
+  const indexPath = path.join(docsPath, 'index.html');
   
   if (fs.existsSync(indexPath)) {
     log('📄 API documentation index already exists', 'yellow');
@@ -112,11 +112,11 @@ function createDocsIndex() {
     </div>
 
     <div class="nav">
-        <a href="modules/index.html" class="nav-item">
+        <a href="modules.html" class="nav-item">
             <h3>📚 API Reference</h3>
             <p>Complete TypeScript API documentation with examples and type definitions</p>
         </a>
-        <a href="../index.html" class="nav-item">
+        <a href="examples.html" class="nav-item">
             <h3>🏠 User Guide</h3>
             <p>Getting started guide, examples, and usage instructions</p>
         </a>
@@ -137,7 +137,7 @@ function createDocsIndex() {
 }
 
 function generateReadme() {
-  const readmePath = path.join(__dirname, '..', 'docs', 'api', 'README.md');
+  const readmePath = path.join(__dirname, '..', 'docs', 'README.md');
   
   if (fs.existsSync(readmePath)) {
     log('📄 API README already exists', 'yellow');
@@ -231,8 +231,8 @@ function main() {
   
   log(`\n${colors.bright}${colors.green}🎉 Documentation generation completed successfully!${colors.reset}`);
   log(`\n${colors.cyan}📖 Documentation available at:${colors.reset}`);
-  log(`   • API Docs: ${colors.blue}docs/api/index.html${colors.reset}`);
-  log(`   • User Guide: ${colors.blue}docs/index.html${colors.reset}`);
+  log(`   • API Docs: ${colors.blue}docs/index.html${colors.reset}`);
+  log(`   • User Guide: ${colors.blue}docs/examples.html${colors.reset}`);
   log(`\n${colors.yellow}💡 To serve documentation locally, run:${colors.reset}`);
   log(`   ${colors.blue}npm run docs:serve${colors.reset}`);
 }

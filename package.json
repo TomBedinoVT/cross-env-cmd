@@ -17,7 +17,7 @@
     "test:all": "npm run build && npm test && npm run test:manual",
     "start": "node dist/index.js",
     "docs": "node scripts/generate-docs.js",
-    "docs:serve": "npm run docs && npx http-server docs/api -p 8080 -o",
+    "docs:serve": "npm run docs && npx http-server docs -p 8080 -o",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

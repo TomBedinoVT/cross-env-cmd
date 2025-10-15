@@ -72,4 +72,9 @@ test-env.js
 *.tsbuildinfo
 
 # Generated documentation
-docs/api/
+docs/assets/
+docs/functions/
+docs/interfaces/
+docs/modules.html
+docs/globals.html
+docs/index.html
