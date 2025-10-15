@@ -84,6 +84,12 @@ export function parseArgs(): ParsedArgs {
  * 
  * Shows usage, available options, and examples.
  * 
+ * @example
+ * ```typescript
+ * // Show help
+ * showHelp();
+ * ```
+ * 
  * @category CLI
  */
 function showHelp(): void {
