@@ -22,7 +22,7 @@ import { ParsedArgs } from '../types';
  * const args = parseArgs();
  * // Result: {
  * //   environment: 'staging',
- * //   files: ['.env.local'],
+ * //   files: ['.env.local', '.env.staging'],
  * //   envVars: { DEBUG: 'true' },
  * //   command: ['npm', 'start']
  * // }
