@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cross-env-cmd - Exemples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: attr(data-title);
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: #4a5568;
+            color: #e2e8f0;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .example {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example h4 {
+            color: #1976d2;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .example-description {
+            background: #f8f9fa;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .example-description h5 {
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-structure {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .file-structure .file {
+            color: #28a745;
+        }
+
+        .file-structure .dir {
+            color: #007bff;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .highlight h5 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .use-case {
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+        }
+
+        .use-case h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .use-case .scenario {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .use-case .scenario h5 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin: 0.5rem 0;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #5a67d8;
+        }
+
+        .copy-btn.copied {
+            background: #28a745;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Exemples d'utilisation</h1>
+            <p>Découvrez comment utiliser cross-env-cmd dans différents scénarios</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="home.html">🏠 Accueil</a></li>
+                <li><a href="index.html">📖 Documentation</a></li>
+                <li><a href="examples.html">💡 Exemples</a></li>
+                <li><a href="https://github.com/ValoriaTechnologia/cross-env-cmd">🐙 GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section class="section">
+                <h2>Cas d'usage courants</h2>
+                
+                <div class="use-case">
+                    <h3>🚀 Déploiement d'application</h3>
+                    <div class="scenario">
+                        <h5>Scénario</h5>
+                        <p>Vous voulez déployer votre application avec des variables d'environnement spécifiques pour la production, en plus de variables de test et de variables inline.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Commande</h4>
+                        <div class="code-block" data-title="Terminal">
+cross-env-cmd -e production -f .env.test -f .env.prod TEST=deploy BETA=live npm run deploy
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+                        
+                        <div class="example-description">
+                            <h5>Ce qui se passe :</h5>
+                            <ol>
+                                <li>Charge l'environnement "production" depuis <code>.cross-env-cmdrc</code></li>
+                                <li>Charge les variables depuis <code>.env.test</code></li>
+                                <li>Charge les variables depuis <code>.env.prod</code></li>
+                                <li>Ajoute les variables inline <code>TEST=deploy</code> et <code>BETA=live</code></li>
+                                <li>Exécute <code>npm run deploy</code> avec toutes ces variables</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>🧪 Tests avec différents environnements</h3>
+                    <div class="scenario">
+                        <h5>Scénario</h5>
+                        <p>Vous voulez exécuter vos tests avec des configurations différentes selon l'environnement, en utilisant des variables de test spécifiques.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Commande</h4>
+                        <div class="code-block" data-title="Terminal">
+cross-env-cmd -e testing -f .env.test.local DEBUG=true VERBOSE=1 npm test
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+                        
+                        <div class="example-description">
+                            <h5>Ce qui se passe :</h5>
+                            <ol>
+                                <li>Charge l'environnement "testing" depuis <code>.cross-env-cmdrc</code></li>
+                                <li>Charge les variables depuis <code>.env.test.local</code></li>
+                                <li>Ajoute les variables inline <code>DEBUG=true</code> et <code>VERBOSE=1</code></li>
+                                <li>Exécute <code>npm test</code> avec ces variables</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <h3>🔧 Développement local</h3>
+                    <div class="scenario">
+                        <h5>Scénario</h5>
+                        <p>Vous développez localement et voulez utiliser des variables d'environnement spécifiques pour votre machine, en plus des variables communes.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Commande</h4>
+                        <div class="code-block" data-title="Terminal">
+cross-env-cmd -e development -f .env.local PORT=3001 HOT_RELOAD=true npm run dev
+                        </div>
+                        <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+                        
+                        <div class="example-description">
+                            <h5>Ce qui se passe :</h5>
+                            <ol>
+                                <li>Charge l'environnement "development" depuis <code>.cross-env-cmdrc</code></li>
+                                <li>Charge les variables depuis <code>.env.local</code> (ignoré par git)</li>
+                                <li>Ajoute les variables inline <code>PORT=3001</code> et <code>HOT_RELOAD=true</code></li>
+                                <li>Exécute <code>npm run dev</code> avec ces variables</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Configuration des fichiers</h2>
+                
+                <h3>Structure de projet typique</h3>
+                <div class="file-structure">
+<span class="dir">mon-projet/</span>
+├── <span class="file">.cross-env-cmdrc</span>          # Configuration des environnements
+├── <span class="file">.env.development</span>         # Variables de développement
+├── <span class="file">.env.staging</span>             # Variables de staging
+├── <span class="file">.env.production</span>          # Variables de production
+├── <span class="file">.env.local</span>               # Variables locales (ignoré par git)
+├── <span class="file">.env.test</span>                # Variables de test
+└── <span class="file">package.json</span>             # Scripts npm
+                </div>
+
+                <h3>Fichier .cross-env-cmdrc</h3>
+                <div class="code-block" data-title=".cross-env-cmdrc">
+{
+  "development": {
+    "NODE_ENV": "development",
+    "LOG_LEVEL": "debug",
+    "DATABASE_URL": "postgres://localhost:5432/myapp_dev",
+    "API_URL": "http://localhost:3000"
+  },
+  "staging": {
+    "NODE_ENV": "staging",
+    "LOG_LEVEL": "info",
+    "DATABASE_URL": "postgres://staging-db:5432/myapp_staging",
+    "API_URL": "https://api-staging.example.com"
+  },
+  "production": {
+    "NODE_ENV": "production",
+    "LOG_LEVEL": "error",
+    "DATABASE_URL": "postgres://prod-db:5432/myapp_prod",
+    "API_URL": "https://api.example.com"
+  }
+}
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+
+                <h3>Fichier .env.development</h3>
+                <div class="code-block" data-title=".env.development">
+# Variables spécifiques au développement
+DEBUG=true
+HOT_RELOAD=true
+MOCK_API=true
+REDIS_URL=redis://localhost:6379
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+
+                <h3>Fichier .env.local</h3>
+                <div class="code-block" data-title=".env.local">
+# Variables locales (ne pas commiter)
+DATABASE_PASSWORD=mon_mot_de_passe_local
+API_KEY=ma_cle_api_personnelle
+PORT=3001
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+            </section>
+
+            <section class="section">
+                <h2>Scripts npm recommandés</h2>
+                
+                <h3>package.json</h3>
+                <div class="code-block" data-title="package.json">
+{
+  "scripts": {
+    "dev": "cross-env-cmd -e development -f .env.local npm run start",
+    "dev:debug": "cross-env-cmd -e development -f .env.local DEBUG=true npm run start",
+    "test": "cross-env-cmd -e testing -f .env.test npm run test:unit",
+    "test:integration": "cross-env-cmd -e testing -f .env.test -f .env.integration npm run test:integration",
+    "build:staging": "cross-env-cmd -e staging -f .env.staging npm run build",
+    "build:prod": "cross-env-cmd -e production -f .env.production npm run build",
+    "deploy:staging": "cross-env-cmd -e staging -f .env.staging -f .env.deploy npm run deploy",
+    "deploy:prod": "cross-env-cmd -e production -f .env.production -f .env.deploy npm run deploy"
+  }
+}
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+
+                <div class="highlight">
+                    <h5>💡 Astuce</h5>
+                    <p>Utilisez des scripts npm pour simplifier l'utilisation de cross-env-cmd dans votre équipe. Cela évite de retenir les commandes complexes.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Exemples avancés</h2>
+                
+                <h3>Variables avec des valeurs complexes</h3>
+                <div class="example">
+                    <h4>Commande</h4>
+                    <div class="code-block" data-title="Terminal">
+cross-env-cmd -e production DATABASE_URL="postgres://user:pass@host:5432/db" API_KEYS='{"stripe":"sk_...","sendgrid":"SG..."}' npm start
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+                    
+                    <div class="example-description">
+                        <h5>Note :</h5>
+                        <p>Les guillemets sont nécessaires pour les valeurs contenant des espaces ou des caractères spéciaux.</p>
+                    </div>
+                </div>
+
+                <h3>Utilisation avec Docker</h3>
+                <div class="example">
+                    <h4>Dockerfile</h4>
+                    <div class="code-block" data-title="Dockerfile">
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+CMD ["cross-env-cmd", "-e", "production", "npm", "start"]
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+                </div>
+
+                <h3>Utilisation avec des commandes complexes</h3>
+                <div class="example">
+                    <h4>Commande</h4>
+                    <div class="code-block" data-title="Terminal">
+cross-env-cmd -e staging -f .env.test NODE_ENV=test npm run test -- --coverage --watch
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+                    
+                    <div class="example-description">
+                        <h5>Ce qui se passe :</h5>
+                        <p>Les arguments après <code>--</code> sont passés directement à la commande <code>npm run test</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Dépannage</h2>
+                
+                <h3>Problèmes courants</h3>
+                
+                <div class="highlight">
+                    <h5>❌ Erreur : "Environment 'staging' not found"</h5>
+                    <p><strong>Solution :</strong> Vérifiez que l'environnement "staging" existe dans votre fichier <code>.cross-env-cmdrc</code>.</p>
+                </div>
+
+                <div class="highlight">
+                    <h5>❌ Erreur : "Environment file not found"</h5>
+                    <p><strong>Solution :</strong> Vérifiez que le fichier .env existe et que le chemin est correct.</p>
+                </div>
+
+                <div class="highlight">
+                    <h5>❌ Variables non chargées</h5>
+                    <p><strong>Solution :</strong> Vérifiez l'ordre de priorité. Les variables inline ont la priorité la plus haute.</p>
+                </div>
+
+                <h3>Commandes de débogage</h3>
+                <div class="code-block" data-title="Terminal">
+# Vérifier la configuration RC
+cat .cross-env-cmdrc
+
+# Vérifier les variables d'environnement
+cross-env-cmd -e staging -f .env.test node -e "console.log(process.env)"
+
+# Tester avec une commande simple
+cross-env-cmd -e staging echo "Test successful"
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling.textContent)">📋 Copier</button>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copié!';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Erreur lors de la copie: ', err);
+            });
+        }
+
+        // Smooth scrolling pour la navigation
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
