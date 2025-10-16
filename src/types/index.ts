@@ -1,26 +1,31 @@
 /**
  * Configuration interface for RC files (.cross-env-cmdrc)
- * Maps environment names to their respective environment variables
+ * Contains environments object with environment names mapped to their respective environment variables
  * 
  * @example
  * ```json
  * {
- *   "development": {
- *     "NODE_ENV": "development",
- *     "API_URL": "http://localhost:3000"
- *   },
- *   "production": {
- *     "NODE_ENV": "production",
- *     "API_URL": "https://api.example.com"
+ *   "environments": {
+ *     "development": {
+ *       "NODE_ENV": "development",
+ *       "API_URL": "http://localhost:3000"
+ *     },
+ *     "production": {
+ *       "NODE_ENV": "production",
+ *       "API_URL": "https://api.example.com"
+ *     }
  *   }
  * }
  * ```
  */
 export interface RCConfig {
-  /** Environment name mapped to environment variables */
-  [environment: string]: {
-    /** Environment variable key-value pairs */
-    [key: string]: string;
+  /** Environments object containing environment configurations */
+  environments: {
+    /** Environment name mapped to environment variables */
+    [environment: string]: {
+      /** Environment variable key-value pairs */
+      [key: string]: string;
+    };
   };
 }
 

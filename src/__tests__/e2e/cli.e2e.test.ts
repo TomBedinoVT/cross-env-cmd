@@ -16,15 +16,17 @@ describe('CLI End-to-End Tests', () => {
 
     // Create test RC file
     const rcConfig = {
-      development: {
-        NODE_ENV: 'development',
-        LOG_LEVEL: 'debug',
-        DATABASE_NAME: 'test_dev'
-      },
-      staging: {
-        NODE_ENV: 'staging',
-        LOG_LEVEL: 'info',
-        DATABASE_NAME: 'test_staging'
+      environments: {
+        development: {
+          NODE_ENV: 'development',
+          LOG_LEVEL: 'debug',
+          DATABASE_NAME: 'test_dev'
+        },
+        staging: {
+          NODE_ENV: 'staging',
+          LOG_LEVEL: 'info',
+          DATABASE_NAME: 'test_staging'
+        }
       }
     };
     fs.writeFileSync(testRCFile, JSON.stringify(rcConfig, null, 2));
@@ -211,9 +213,11 @@ describe('CLI End-to-End Tests', () => {
   it('should use custom RC file', async () => {
     const customRCFile = path.join(tempDir, 'custom.rc');
     const customConfig = {
-      custom: {
-        NODE_ENV: 'custom',
-        CUSTOM_VAR: 'custom_value'
+      environments: {
+        custom: {
+          NODE_ENV: 'custom',
+          CUSTOM_VAR: 'custom_value'
+        }
       }
     };
     fs.writeFileSync(customRCFile, JSON.stringify(customConfig, null, 2));

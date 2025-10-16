@@ -12,18 +12,18 @@ Créez un fichier `.cross-env-cmdrc` dans votre projet :
 
 ```json
 {
-  "staging": {
-    "files": [".env.staging", ".env.common"],
-    "vars": {
+  "environments": {
+    "staging": {
       "NODE_ENV": "staging",
-      "LOG_LEVEL": "info"
-    }
-  },
-  "production": {
-    "files": [".env.production", ".env.common"],
-    "vars": {
+      "LOG_LEVEL": "info",
+      "DATABASE_NAME": "myapp_staging",
+      "API_URL": "https://api-staging.example.com"
+    },
+    "production": {
       "NODE_ENV": "production",
-      "LOG_LEVEL": "error"
+      "LOG_LEVEL": "error",
+      "DATABASE_NAME": "myapp_production",
+      "API_URL": "https://api.example.com"
     }
   }
 }
@@ -80,9 +80,11 @@ cross-env-cmd --rc .my-config.json -e production npm start
 ### JSON
 ```json
 {
-  "staging": {
-    "files": [".env.staging"],
-    "vars": { "NODE_ENV": "staging" }
+  "environments": {
+    "staging": {
+      "NODE_ENV": "staging",
+      "LOG_LEVEL": "info"
+    }
   }
 }
 ```
@@ -90,9 +92,11 @@ cross-env-cmd --rc .my-config.json -e production npm start
 ### JavaScript
 ```javascript
 module.exports = {
-  staging: {
-    files: ['.env.staging'],
-    vars: { NODE_ENV: 'staging' }
+  environments: {
+    staging: {
+      NODE_ENV: 'staging',
+      LOG_LEVEL: 'info'
+    }
   }
 };
 ```

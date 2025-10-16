@@ -16,15 +16,17 @@ describe('loadEnvironment Integration Tests', () => {
 
     // Create test RC file
     const rcConfig = {
-      development: {
-        NODE_ENV: 'development',
-        LOG_LEVEL: 'debug',
-        DATABASE_NAME: 'test_dev'
-      },
-      staging: {
-        NODE_ENV: 'staging',
-        LOG_LEVEL: 'info',
-        DATABASE_NAME: 'test_staging'
+      environments: {
+        development: {
+          NODE_ENV: 'development',
+          LOG_LEVEL: 'debug',
+          DATABASE_NAME: 'test_dev'
+        },
+        staging: {
+          NODE_ENV: 'staging',
+          LOG_LEVEL: 'info',
+          DATABASE_NAME: 'test_staging'
+        }
       }
     };
     fs.writeFileSync(testRCFile, JSON.stringify(rcConfig, null, 2));

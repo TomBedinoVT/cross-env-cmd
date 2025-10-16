@@ -75,24 +75,25 @@ Créez un fichier `.cross-env-cmdrc` dans votre projet. Le format est identique 
 
 ```json
 {
-  "development": {
-    "NODE_ENV": "development",
-    "LOG_LEVEL": "debug",
-    "DATABASE_NAME": "myapp_development",
-    "API_URL": "http://localhost:3000"
-  },
-  "staging": {
-    "NODE_ENV": "staging",
-    "LOG_LEVEL": "info",
-    "DATABASE_NAME": "myapp_staging",
-    "API_URL": "https://api-staging.example.com"
-  },
-  "production": {
-    "NODE_ENV": "production",
-    "LOG_LEVEL": "error",
-    "DATABASE_NAME": "myapp_production",
-    "API_URL": "https://api.example.com",
-    "SECRET_KEY": "prod_secret_key_here"
+  "environments": {
+    "development": {
+      "NODE_ENV": "development",
+      "LOG_LEVEL": "debug",
+      "DATABASE_NAME": "myapp_development",
+      "API_URL": "http://localhost:3000"
+    },
+    "staging": {
+      "NODE_ENV": "staging",
+      "LOG_LEVEL": "info",
+      "DATABASE_NAME": "myapp_staging",
+      "API_URL": "https://api-staging.example.com"
+    },
+    "production": {
+      "NODE_ENV": "production",
+      "LOG_LEVEL": "error",
+      "DATABASE_NAME": "myapp_production",
+      "API_URL": "https://api.example.com"
+    }
   }
 }
 ```
@@ -101,27 +102,32 @@ Créez un fichier `.cross-env-cmdrc` dans votre projet. Le format est identique 
 
 ```javascript
 module.exports = {
-  development: {
-    NODE_ENV: 'development',
-    LOG_LEVEL: 'debug',
-    DATABASE_NAME: 'myapp_development',
-    API_URL: 'http://localhost:3000'
-  },
-  staging: {
-    NODE_ENV: 'staging',
-    LOG_LEVEL: 'info',
-    DATABASE_NAME: 'myapp_staging',
-    API_URL: 'https://api-staging.example.com'
-  },
-  production: {
-    NODE_ENV: 'production',
-    LOG_LEVEL: 'error',
-    DATABASE_NAME: 'myapp_production',
-    API_URL: 'https://api.example.com',
-    SECRET_KEY: 'prod_secret_key_here'
+  environments: {
+    development: {
+      NODE_ENV: 'development',
+      LOG_LEVEL: 'debug',
+      DATABASE_NAME: 'myapp_development',
+      API_URL: 'http://localhost:3000'
+    },
+    staging: {
+      NODE_ENV: 'staging',
+      LOG_LEVEL: 'info',
+      DATABASE_NAME: 'myapp_staging',
+      API_URL: 'https://api-staging.example.com'
+    },
+    production: {
+      NODE_ENV: 'production',
+      LOG_LEVEL: 'error',
+      DATABASE_NAME: 'myapp_production',
+      API_URL: 'https://api.example.com'
+    }
   }
 };
 ```
+
+### Avertissement
+
+**NE JAMAIS METTRE DE SECRETS, CLÉS API, etc, dans ce fichier. Il est conçu pour partir sur un repertoire gitub.
 
 ## Ordre de priorité des variables
 

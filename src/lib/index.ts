@@ -50,8 +50,8 @@ export async function loadEnvironment(options: LoadEnvironmentOptions = {}): Pro
   // Load RC configuration if environment is specified
   if (environment) {
     const rcConfig = await loadRCConfig(rcFile);
-    if (rcConfig && rcConfig[environment]) {
-      const envConfig = rcConfig[environment];
+    if (rcConfig && rcConfig.environments && rcConfig.environments[environment]) {
+      const envConfig = rcConfig.environments[environment];
       finalEnv = { ...finalEnv, ...envConfig };
     } else {
       throw new Error(`Environment '${environment}' not found in ${rcFile}`);

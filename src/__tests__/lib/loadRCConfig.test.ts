@@ -10,13 +10,15 @@ const mockedFs = fs as jest.Mocked<typeof fs>;
 describe('loadRCConfig', () => {
   const testRCFile = '.cross-env-cmdrc';
   const testConfig: RCConfig = {
-    development: {
-      NODE_ENV: 'development',
-      LOG_LEVEL: 'debug'
-    },
-    production: {
-      NODE_ENV: 'production',
-      LOG_LEVEL: 'error'
+    environments: {
+      development: {
+        NODE_ENV: 'development',
+        LOG_LEVEL: 'debug'
+      },
+      production: {
+        NODE_ENV: 'production',
+        LOG_LEVEL: 'error'
+      }
     }
   };
 
